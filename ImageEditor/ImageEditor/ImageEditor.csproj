@@ -53,6 +53,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommandManager.cs" />
+    <Compile Include="ICommand.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="LayerManager.cs" />
     <Compile Include="PaintingCore.cs" />
@@ -60,6 +62,8 @@
     <Compile Include="StraightLine.cs" />
     <Compile Include="Tool.cs" />
     <Compile Include="ToolBox.cs" />
+    <Compile Include="UsePenCommand.cs" />
+    <Compile Include="UseStraightLineCommand.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

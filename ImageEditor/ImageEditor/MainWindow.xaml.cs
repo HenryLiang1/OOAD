@@ -85,25 +85,7 @@ namespace ImageEditorSpace
                 Brush color = currentLayer == layer ? Brushes.AliceBlue : Brushes.White;
                 layerView.Children.Add(CreateLayerView(layer.Name, new Canvas(), color, layer.IsVisible));
                 //core.SelectLayer(layer.Name); // current canvas is always point to the last layer
-            }
-
-
-            /*foreach (Grid layerGrid in layerView.Children.OfType<Grid>())
-            {
-                if (layerGrid.Name.Equals(core.GetCurrentLayer().Name))
-                {
-                    foreach (Border layerBorder in layerGrid.Children.OfType<Border>())
-                    {
-                        layerBorder.Background = Brushes.Gray;
-                        layerBorder.BorderThickness = new Thickness(2.0);
-                    }
-                    
-                }
-                Console.WriteLine(layerGrid.Name + " Update1");
-                Console.WriteLine(core.GetCurrentLayer().Name + " Update2");
-            }*/
-            //Console.WriteLine(core.GetCurrentLayer().Name+ " Update");
-            
+            }            
         }
 
         private void HandleMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -202,6 +184,18 @@ namespace ImageEditorSpace
             contentGrid.Children.Add(iconName);
             contentGrid.Children.Add(visibleBox);
             return containerGrid;
+        }
+
+        private void ClickUndoItem(object sender, MouseButtonEventArgs e)
+        {
+            core.Undo();
+            Console.WriteLine("asdasd");
+        }
+
+        private void ClickRedoItem(object sender, MouseButtonEventArgs e)
+        {
+            core.Redo();
+            Console.WriteLine("zxczxc");
         }
     }
 }

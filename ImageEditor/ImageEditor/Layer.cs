@@ -33,5 +33,10 @@ namespace ImageEditorSpace
             this.toolList.Add(currentTool);
         }
 
+        public void Erase()
+        {
+            this.toolList.RemoveAt(toolList.Count-1);
+        }
+
     }
 }

@@ -5,7 +5,10 @@
     <DockPanel Background="Transparent">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File" PreviewMouseDown="OpenFilesystem"></MenuItem>
-            <MenuItem Header="Edit"></MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Undo" PreviewMouseDown="ClickUndoItem" />
+                <MenuItem Header="Redo" PreviewMouseDown="ClickRedoItem" />
+            </MenuItem>
             <MenuItem Header="Process"></MenuItem>
             <MenuItem Header="About"></MenuItem>
         </Menu>

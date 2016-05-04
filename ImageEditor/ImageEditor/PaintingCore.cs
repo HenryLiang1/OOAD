@@ -19,6 +19,7 @@ namespace ImageEditorSpace
         public Tool currentTool;
         public Canvas currentCanvas;
         public LayerManager layerManager;
+        public CommandManager commandManager;
 
         private bool pressed = false;
         private System.Windows.Point currentPoint;
@@ -28,6 +29,7 @@ namespace ImageEditorSpace
             currentCanvas = new Canvas(); //Temp
             currentTool = ToolBox.GetTool(ToolCategory.Pen);
             layerManager = new LayerManager();
+            commandManager = new CommandManager();
         }
 
         public void ClickMouseDown(double x, double y)
@@ -46,7 +48,18 @@ namespace ImageEditorSpace
         public void ClickMouseUp(double x, double y)
         {
             Layer layer = layerManager.GetCurrentLayer(); // get current layer
-            layer.Draw(currentTool); // add new tool
+            //layer.Draw(currentTool); // add new tool
+            if (currentTool.GetType() == typeof(Pen))
+            {
+                ICommand usePenCommand = new UsePenCommand(layer, currentTool as Pen);
+                commandManager.Execute(usePenCommand);
+            }
+            else if (currentTool.GetType() == typeof(StraightLine))
+            {
+                ICommand useStraightLineCommand = new UseStraightLineCommand(layer, currentTool as StraightLine);
+                commandManager.Execute(useStraightLineCommand);
+            }
+
             pressed = false;
             currentTool = ToolBox.GetTool(currentTool.GetCategory()); // change NEW pen
         }
@@ -97,8 +110,22 @@ namespace ImageEditorSpace
             NotifyUpdateLayer();
         }
 
-        public void SetLayerVisible(string id, bool isVisible){
+        public void SetLayerVisible(string id, bool isVisible)
+        {
             layerManager.SetLayerVisible(id, isVisible);
+            NotifyUpdateScreen();
+        }
+
+        public void Undo()
+        {
+            commandManager.Undo();
+            NotifyUpdateScreen();
+
+        }
+
+        public void Redo()
+        {
+            commandManager.Redo();
             NotifyUpdateScreen();
         }
 

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ImageEditorSpace
 {
-    interface ICommand
+    public interface ICommand
     {
+        void Execute();
+        void UnExecute();
     }
 }
