@@ -1,0 +1,7 @@
+C:\Users\A8859\Desktop\Visual C#\ImageEditor\ImageEditorUnitTest\bin\Debug\ImageEditorUnitTest.dll
+C:\Users\A8859\Desktop\Visual C#\ImageEditor\ImageEditorUnitTest\bin\Debug\ImageEditorUnitTest.pdb
+C:\Users\A8859\Desktop\Visual C#\ImageEditor\ImageEditorUnitTest\obj\Debug\ImageEditorUnitTest.csprojResolveAssemblyReference.cache
+C:\Users\A8859\Desktop\Visual C#\ImageEditor\ImageEditorUnitTest\obj\Debug\ImageEditorUnitTest.dll
+C:\Users\A8859\Desktop\Visual C#\ImageEditor\ImageEditorUnitTest\obj\Debug\ImageEditorUnitTest.pdb
+C:\Users\A8859\Desktop\Visual C#\ImageEditor\ImageEditorUnitTest\bin\Debug\ImageEditor.exe
+C:\Users\A8859\Desktop\Visual C#\ImageEditor\ImageEditorUnitTest\bin\Debug\ImageEditor.pdb
