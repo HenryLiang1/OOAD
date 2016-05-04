@@ -3,4 +3,10 @@ Teamwork for OOAD
 
 # Latest delivery
 
-painting, layer manager, unit test for each class except painting core
+Painting
+<br>
+Layer manager
+<br>
+Recovery System with command pattern
+<br>
+Unit Test for each class except painting core
