@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -53,17 +54,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CommandManager.cs" />
-    <Compile Include="ICommand.cs" />
-    <Compile Include="Layer.cs" />
-    <Compile Include="LayerManager.cs" />
-    <Compile Include="PaintingCore.cs" />
-    <Compile Include="Pen.cs" />
-    <Compile Include="StraightLine.cs" />
-    <Compile Include="Tool.cs" />
-    <Compile Include="ToolBox.cs" />
-    <Compile Include="UsePenCommand.cs" />
-    <Compile Include="UseStraightLineCommand.cs" />
+    <Compile Include="Model\CommandManager.cs" />
+    <Compile Include="Model\ICommand.cs" />
+    <Compile Include="Model\Layer.cs" />
+    <Compile Include="Model\LayerManager.cs" />
+    <Compile Include="Model\PaintingCore.cs" />
+    <Compile Include="Model\Pen.cs" />
+    <Compile Include="Model\StraightLine.cs" />
+    <Compile Include="Model\Tool.cs" />
+    <Compile Include="Model\ToolBox.cs" />
+    <Compile Include="Model\UsePenCommand.cs" />
+    <Compile Include="Model\UseStraightLineCommand.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

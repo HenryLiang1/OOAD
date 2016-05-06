@@ -20,11 +20,8 @@ namespace ImageEditorSpace
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Pen pen;
-        StraightLine straightLine;
-        List<Canvas> canvasRecord;
-        PaintingCore core;
 
+        PaintingCore core;
 
         public MainWindow()
         {
@@ -32,19 +29,18 @@ namespace ImageEditorSpace
             core = new PaintingCore();
             core.UpdateScreenEvent += UpdateScreen;
             core.UpdateLayerEvent += UpdateLayer;
-            canvasRecord = new List<Canvas>();
+            core.UpdateMenuEvent += UpdateMenu;
             core.CreateNewLayer();
-            
         }
 
         private void SelectPenTool(object sender, MouseButtonEventArgs e)
         {
-            core.SelectTool(ToolCategory.Pen);
+            core.SelectTool(ToolType.Pen);
         }
 
         private void SelectLineTool(object sender, MouseButtonEventArgs e)
         {
-            core.SelectTool(ToolCategory.Line);
+            core.SelectTool(ToolType.Line);
         }
 
         private void OpenFilesystem(object sender, MouseButtonEventArgs e)
@@ -88,6 +84,12 @@ namespace ImageEditorSpace
             }            
         }
 
+        private void UpdateMenu()
+        {
+            UndoMenuItem.IsEnabled = core.IsUndoEnabled;
+            RedoMenuItem.IsEnabled = core.IsRedoEnabled;
+        }
+
         private void HandleMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             double x, y;
@@ -104,7 +106,8 @@ namespace ImageEditorSpace
 
         private void DeleteLayer(object sender, RoutedEventArgs e)
         {
-            core.DeleteLayer();
+            Layer currentLayer = core.GetCurrentLayer();
+            core.DeleteLayer(currentLayer);
         }
 
         private void SelectLayer(object sender, MouseButtonEventArgs e)
@@ -117,6 +120,32 @@ namespace ImageEditorSpace
                 
 
             }
+        }
+
+        private void ClickUndoItem(object sender, MouseButtonEventArgs e)
+        {
+            core.Undo();
+            Console.WriteLine("Undo");
+        }
+
+        private void ClickRedoItem(object sender, MouseButtonEventArgs e)
+        {
+            core.Redo();
+            Console.WriteLine("Redo");
+        }
+
+        private void MoveUpLayer(object sender, RoutedEventArgs e)
+        {
+            Layer currentLayer = core.GetCurrentLayer();
+            core.MoveLayer(currentLayer, "Up");
+            Console.WriteLine("MoveUp");
+        }
+
+        private void MoveDownLayer(object sender, RoutedEventArgs e)
+        {
+            Layer currentLayer = core.GetCurrentLayer();
+            core.MoveLayer(currentLayer, "Down");
+            Console.WriteLine("MoveDown");
         }
 
         private void CheckLayerVisible(object sender, RoutedEventArgs e)
@@ -165,6 +194,14 @@ namespace ImageEditorSpace
             iconBorder.Margin = new Thickness(5.0);
             Canvas iconCanvas = new Canvas();
             iconCanvas.Children.Add(icon); //*=
+
+            TextBlock layerName = new TextBlock();
+            layerName.HorizontalAlignment = HorizontalAlignment.Right;
+            layerName.VerticalAlignment = VerticalAlignment.Top;
+            layerName.Margin = new Thickness(0.0, 0.0, 17.0, 0.0);
+            layerName.FontSize = 8.0;
+            layerName.Text = id;
+
             TextBlock iconName = new TextBlock();
             iconName.HorizontalAlignment = HorizontalAlignment.Right;
             iconName.VerticalAlignment = VerticalAlignment.Center;
@@ -181,21 +218,10 @@ namespace ImageEditorSpace
             contentBorder.Child = contentGrid;
             contentGrid.Children.Add(iconBorder);
             iconBorder.Child = iconCanvas;
+            contentGrid.Children.Add(layerName);
             contentGrid.Children.Add(iconName);
             contentGrid.Children.Add(visibleBox);
             return containerGrid;
-        }
-
-        private void ClickUndoItem(object sender, MouseButtonEventArgs e)
-        {
-            core.Undo();
-            Console.WriteLine("asdasd");
-        }
-
-        private void ClickRedoItem(object sender, MouseButtonEventArgs e)
-        {
-            core.Redo();
-            Console.WriteLine("zxczxc");
         }
     }
 }

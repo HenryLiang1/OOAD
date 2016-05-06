@@ -48,8 +48,8 @@ namespace ImageEditorUnitTest
         [TestMethod]
         public void TestGetType()
         {
-            ToolCategory Tool = _line.GetCategory();
-            Assert.AreEqual(ToolCategory.Line, Tool);
+            ToolType Tool = _line.GetToolType();
+            Assert.AreEqual(ToolType.Line, Tool);
         }
     }
 }

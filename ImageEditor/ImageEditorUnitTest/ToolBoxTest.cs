@@ -15,15 +15,15 @@ namespace ImageEditorUnitTest
         [TestMethod]
         public void TestGetTool()
         {
-            Assert.IsInstanceOfType(ToolBox.GetTool(ToolCategory.Line), typeof(StraightLine));
-            Assert.IsInstanceOfType(ToolBox.GetTool(ToolCategory.Pen), typeof(Pen));
+            Assert.IsInstanceOfType(ToolBox.GetTool(ToolType.Line), typeof(StraightLine));
+            Assert.IsInstanceOfType(ToolBox.GetTool(ToolType.Pen), typeof(Pen));
         }
 
         [TestMethod]
         [ExpectedException(typeof(NotSupportedException), "A Tool is not support")]
         public void TestException()
         {
-            var obj = ToolBox.GetTool(ToolCategory.Eraser);
+            var obj = ToolBox.GetTool(ToolType.Eraser);
         }
     }
   
