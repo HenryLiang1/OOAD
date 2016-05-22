@@ -55,6 +55,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\CommandManager.cs" />
+    <Compile Include="Model\File.cs" />
+    <Compile Include="Model\FileSystem.cs" />
     <Compile Include="Model\ICommand.cs" />
     <Compile Include="Model\Layer.cs" />
     <Compile Include="Model\LayerManager.cs" />

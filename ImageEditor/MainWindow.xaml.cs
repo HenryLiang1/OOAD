@@ -18,6 +18,8 @@ namespace ImageEditorSpace
     /// <summary>
     /// MainWindow.xaml 的互動邏輯
     /// </summary>
+    /// 
+
     public partial class MainWindow : Window
     {
 
@@ -46,6 +48,40 @@ namespace ImageEditorSpace
         private void OpenFilesystem(object sender, MouseButtonEventArgs e)
         {
             Console.WriteLine("OP");
+        }
+
+        private void ClickNewFileItem(object sender, MouseButtonEventArgs e)
+        {
+        }
+
+        private void ClickLoadFileItem(object sender, MouseButtonEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dl1 = new Microsoft.Win32.OpenFileDialog();
+            dl1.FileName = "MYFileSave";
+            dl1.DefaultExt = ".png";
+            dl1.Filter = "Image documents (.png)|*.png";
+            Nullable<bool> result = dl1.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dl1.FileName;
+                core.LoadFile(filename);
+            }
+        }
+
+        private void ClickSaveFileItem(object sender, MouseButtonEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog dl1 = new Microsoft.Win32.SaveFileDialog();
+            dl1.FileName = "MyImage";
+            dl1.DefaultExt = ".png";
+            dl1.Filter = "Image documents (.png)|*.png";
+            Nullable<bool> result = dl1.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dl1.FileName;
+                core.SaveFile(filename, currentCanvas);
+            }
         }
 
         private void HandleMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -229,5 +265,9 @@ namespace ImageEditorSpace
             contentGrid.Children.Add(visibleBox);
             return containerGrid;
         }
+
+
+
+
     }
 }

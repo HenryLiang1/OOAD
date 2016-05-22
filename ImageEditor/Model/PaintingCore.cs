@@ -21,19 +21,20 @@ namespace ImageEditorSpace
         public delegate void UpdateMenuEventHandler();
 
         public Tool currentTool;
-        public Canvas currentCanvas;
         public LayerManager layerManager;
         public CommandManager commandManager;
+        public FileSystem fileSystem;
+
 
         private bool pressed = false;
         private System.Windows.Point currentPoint;
 
         public PaintingCore()
         {
-            currentCanvas = new Canvas(); //Temp
             currentTool = ToolBox.GetTool(ToolType.Pen);
             layerManager = new LayerManager();
             commandManager = new CommandManager();
+            fileSystem = new FileSystem();
         }
 
         public void ClickMouseDown(double x, double y)
@@ -155,6 +156,23 @@ namespace ImageEditorSpace
         {
             layerManager.MoveLayer(GetCurrentLayer(), orention);
             NotifyUpdateLayer();
+        }
+
+        public void LoadFile(string fileName)
+        {
+            
+            layerManager = new LayerManager();
+            layerManager.CreateNewLayer();
+            Layer currentLayer = layerManager.GetCurrentLayer();
+            fileSystem.LoadFile(fileName, currentLayer);
+            NotifyUpdateLayer();
+            NotifyUpdateScreen();
+            NotifyUpdateMenu();
+        }
+
+        public void SaveFile(string fileName, Canvas currentCanvas)
+        {
+            fileSystem.SaveFile(fileName, currentCanvas);
         }
 
         public void NotifyUpdateScreen()

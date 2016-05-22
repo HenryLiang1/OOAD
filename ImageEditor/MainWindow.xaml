@@ -4,7 +4,11 @@
         Title="MainWindow" Height="543.6" Width="698.6" Background="White">
     <DockPanel Background="Transparent">
         <Menu DockPanel.Dock="Top" Name="MenuItem1">
-            <MenuItem Header="File" PreviewMouseDown="OpenFilesystem"></MenuItem>
+            <MenuItem Header="File" PreviewMouseDown="OpenFilesystem">
+                <MenuItem Header="New" Name="NewFileMenuItem" PreviewMouseDown="ClickNewFileItem" />
+                <MenuItem Header="Load" Name="LoadFileMenuItem" PreviewMouseDown="ClickLoadFileItem" />
+                <MenuItem Header="Save" Name="SaveFileMenuItem" PreviewMouseDown="ClickSaveFileItem" />
+            </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Undo" Name="UndoMenuItem" IsEnabled="false" PreviewMouseDown="ClickUndoItem" />
                 <MenuItem Header="Redo" Name="RedoMenuItem" IsEnabled="false" PreviewMouseDown="ClickRedoItem" />
