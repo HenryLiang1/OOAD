@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFColorPickerLib;
 
 namespace ImageEditorSpace
 {
@@ -24,25 +25,30 @@ namespace ImageEditorSpace
     {
 
         PaintingCore core;
+        SolidColorBrush brushColor;
 
         public MainWindow()
         {
             InitializeComponent();
             core = new PaintingCore();
+            brushColor = new SolidColorBrush(Colors.Black);
             core.UpdateScreenEvent += UpdateScreen;
             core.UpdateLayerEvent += UpdateLayer;
             core.UpdateMenuEvent += UpdateMenu;
             core.CreateNewLayer();
+            Console.WriteLine("MainWindow");
         }
 
         private void SelectPenTool(object sender, MouseButtonEventArgs e)
         {
             core.SelectTool(ToolType.Pen);
+            //core.SetBrushColor(brushColor);
         }
 
         private void SelectLineTool(object sender, MouseButtonEventArgs e)
         {
             core.SelectTool(ToolType.Line);
+            //core.SetBrushColor(brushColor);
         }
 
         private void OpenFilesystem(object sender, MouseButtonEventArgs e)
@@ -206,10 +212,16 @@ namespace ImageEditorSpace
             ScaleTransform scaleTrandform = new ScaleTransform(0.1d, 0.1d);
             Grid grid = new Grid();
             grid.RenderTransform = scaleTrandform;
+        }
 
-
-
-
+        private void SelectToolColor(object sender, MouseButtonEventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            if ((bool)colorDialog.ShowDialog())
+            {
+                brushColor = new SolidColorBrush(colorDialog.SelectedColor);
+                core.SetBrushColor(brushColor);
+            }
         }
 
         private Grid CreateLayerView(string id, Canvas icon, Brush gridColor, bool visible)
@@ -265,9 +277,5 @@ namespace ImageEditorSpace
             contentGrid.Children.Add(visibleBox);
             return containerGrid;
         }
-
-
-
-
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace ImageEditorSpace
@@ -16,6 +17,7 @@ namespace ImageEditorSpace
         // here, we make an ouput canvas for future use for show or hide.
         // only until mouse up and this instance is overused.
         private Canvas outputCanvas;
+        SolidColorBrush brush;
 
         public Pen()
         {
@@ -26,7 +28,8 @@ namespace ImageEditorSpace
         public void Draw(double x1, double y1, double x2, double y2)
         {
             Line line = new Line();
-            line.Stroke = SystemColors.WindowFrameBrush;
+            line.Stroke = brush;
+
             line.X1 = x1;
             line.Y1 = y1;
             line.X2 = x2;
@@ -46,6 +49,11 @@ namespace ImageEditorSpace
         public ToolType GetToolType()
         {
             return ToolType.Pen;
+        }
+
+        public void SetColor(SolidColorBrush brushColor)
+        {
+            brush = brushColor;
         }
     }
 }

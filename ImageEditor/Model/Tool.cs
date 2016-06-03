@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace ImageEditorSpace
 {
@@ -19,5 +20,7 @@ namespace ImageEditorSpace
         void Draw(double x1, double y1, double x2, double y2);
         ToolType GetToolType();
         Canvas GetCanvas();
+
+        void SetColor(SolidColorBrush color);
     }
 }

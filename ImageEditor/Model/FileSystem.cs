@@ -10,8 +10,6 @@ namespace ImageEditorSpace
 {
     public class FileSystem
     {
-
-
         public void SaveFile(string fileName, Canvas currentCanvas)
         {
             RenderTargetBitmap rtb = new RenderTargetBitmap((int)currentCanvas.RenderSize.Width,

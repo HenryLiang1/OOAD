@@ -19,6 +19,17 @@
         <DockPanel Background="Transparent">
             <DockPanel DockPanel.Dock="Left">
                 <ToolBarPanel DockPanel.Dock="Top">
+                    <ToolBar HorizontalAlignment="Center">
+                        <Button PreviewMouseDown="SelectToolColor">
+                            <StackPanel >
+                                <Image Source="\Icon\color_switch.png" />
+                                <TextBlock>Color</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </ToolBar>
+                </ToolBarPanel>
+
+                <ToolBarPanel DockPanel.Dock="Top">
                     <ToolBar>
                         <Button Content=" Pen" PreviewMouseDown="SelectPenTool" />
                         <Button Content="Line" PreviewMouseDown="SelectLineTool"/>
@@ -26,6 +37,8 @@
 
                     </ToolBar>
                 </ToolBarPanel>
+
+
                 <DockPanel DockPanel.Dock="Bottom">
                     <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center">Layer Manager</TextBlock>
                     <StackPanel DockPanel.Dock="Top" >

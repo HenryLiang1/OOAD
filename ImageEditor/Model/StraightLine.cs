@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace ImageEditorSpace
@@ -15,6 +16,7 @@ namespace ImageEditorSpace
         private bool firstClicked;
         // only until mouse up and this instance is overused.
         Canvas outputCanvas;
+        SolidColorBrush brush;
 
         public StraightLine()
         {
@@ -25,7 +27,7 @@ namespace ImageEditorSpace
 
         public void Draw(double x1, double y1, double x2, double y2)
         {
-            line.Stroke = SystemColors.WindowFrameBrush;
+            line.Stroke = brush;
             if (firstClicked)
             {
                 line.X1 = x1;
@@ -46,6 +48,11 @@ namespace ImageEditorSpace
         public ToolType GetToolType()
         {
             return ToolType.Line;
+        }
+
+        public void SetColor(SolidColorBrush brushColor)
+        {
+            brush = brushColor;
         }
     }
 }

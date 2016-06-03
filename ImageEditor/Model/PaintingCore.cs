@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace ImageEditorSpace
 {
@@ -28,6 +29,8 @@ namespace ImageEditorSpace
 
         private bool pressed = false;
         private System.Windows.Point currentPoint;
+        private SolidColorBrush currentBrushColor;
+        
 
         public PaintingCore()
         {
@@ -35,11 +38,13 @@ namespace ImageEditorSpace
             layerManager = new LayerManager();
             commandManager = new CommandManager();
             fileSystem = new FileSystem();
+            currentBrushColor = new SolidColorBrush(Colors.Black);
         }
 
         public void ClickMouseDown(double x, double y)
         {
             Layer layer = layerManager.GetCurrentLayer();
+            currentTool.SetColor(currentBrushColor);
             currentPoint.X = x;
             currentPoint.Y = y;
 
@@ -87,6 +92,12 @@ namespace ImageEditorSpace
         public void SelectTool(ToolType toolCategory)
         {
             currentTool = ToolBox.GetTool(toolCategory);
+        }
+
+        public void SetBrushColor(SolidColorBrush brushColor)
+        {
+            currentBrushColor = brushColor;
+            currentTool.SetColor(currentBrushColor);
         }
 
 
@@ -185,7 +196,6 @@ namespace ImageEditorSpace
                 {
                     if (layer.IsVisible == true)
                     {
-
                         foreach (Tool tool in layer.toolList)  //record all painting action   
                             canvasList.Add(tool.GetCanvas());
 
